@@ -3,19 +3,11 @@
         <div class="sidebar-brand-text mx-3">Pushpo Dhara<br><span style="font-size:10px">Properties Ltd.</span></div>
     </a>
     <hr class="sidebar-divider my-0">
-    @can('commission-list')
-        <li class="nav-item @if(request()->is('commission*')) active @endif">
-            <a class="nav-link" href="{{route('commission.index')}}">
-                <i class="fa fa-percent"></i>
-                <span>Commission</span>
-            </a>
-        </li>
-    @endcan
     
-    @canany(['accountant-list', 'agent-list', 'customer-list', 'shareholder-list', 'investor-list'])
+    @canany(['accountant-list', 'agent-list', 'customer-list', 'shareholder-list'])
         <li class="nav-item">
             @php
-                $is_req_user = isRequest(['user-detail*', 'employee*', 'investor*', 'customer*', 'agent*']);
+                $is_req_user = isRequest(['user-detail*', 'employee*', 'customer*', 'agent*']);
             @endphp
             <a class="nav-link @if($is_req_user) collapsed @endif " href="#" data-toggle="collapse" data-target="#user"
                 aria-expanded="{{$is_req_user}}" aria-controls="user">
@@ -37,9 +29,6 @@
                     @endcan
                     @can('agent-list')
                         <a href="{{route('agent.index')}}" class="collapse-item @if(request()->is('agent*')) active @endif">Agent</a>
-                    @endcan
-                    @can('investor-list')
-                        <a href="{{route('investor.index')}}" class="collapse-item @if(request()->is('investor*')) active @endif">Investor</a>
                     @endcan
                     <a href="{{route('employee.index')}}" class="collapse-item @if(request()->is('employee*')) active @endif">Stuff</a>
                 </div>
@@ -141,14 +130,6 @@
             </div>
         </div>
     </li>
-    @can('investment-list')
-        <li class="nav-item @if(request()->is('investment*') || request()->is('pos/investment*')) active @endif">
-            <a class="nav-link" href="{{route('investment.index')}}">
-                <i class="fas fa-hand-holding-usd"></i>
-                <span>Investment</span>
-            </a>
-        </li>
-    @endcan
     @can('land-purchase-list')
         <li class="nav-item @if(request()->is('land-purchase*')) active @endif">
             <a class="nav-link" href="{{route('land-purchase.index')}}">
@@ -160,14 +141,13 @@
     
     @can('withdraw-list')
         <li class="nav-item">
-            <a class="nav-link @if(isRequest(['withdraw*', 'investment-withdraw*'])) collapsed @endif " href="#" data-toggle="collapse" data-target="#withdraw"
-                aria-expanded="@if(isRequest(['withdraw*', 'investment-withdraw*'])) true @else false @endif" aria-controls="withdraw">
+            <a class="nav-link @if(isRequest(['withdraw*'])) collapsed @endif " href="#" data-toggle="collapse" data-target="#withdraw"
+                aria-expanded="@if(isRequest(['withdraw*'])) true @else false @endif" aria-controls="withdraw">
                 <i class="fas fa-money-bill"></i>
                 <span>Withdraw</span>
             </a>
-            <div id="withdraw" class="collapse @if(isRequest(['withdraw*', 'investment-withdraw*'])) show @endif" aria-labelledby="headingTwo" >
+            <div id="withdraw" class="collapse @if(isRequest(['withdraw*'])) show @endif" aria-labelledby="headingTwo" >
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a href="{{route('investment-withdraw.index')}}" class="collapse-item  @if(request()->is('investment-withdraw*')) active @endif">Investors</a>
                     <a href="{{route('withdraw.index')}}" class="collapse-item  @if(request()->is('withdraw*')) active @endif">Other Users</a>
                 </div>
             </div>
