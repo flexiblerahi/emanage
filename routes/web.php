@@ -25,8 +25,6 @@ Route::group(['middleware' => ['auth', 'active']], function () {
     Route::resource('deposit-payment', App\Http\Controllers\DepositPaymentController::class);
     Route::get('deposit-old-payment', [App\Http\Controllers\DepositPaymentController::class, 'oldpayment'])->name('old-payment');
     Route::resource('withdraw', App\Http\Controllers\WithdrawController::class);
-
-    /// start 2.0 work
     Route::resource('bank-info', App\Http\Controllers\BankInfoController::class)->except('destroy');
     Route::group(['prefix' => 'pos'], function() { 
         Route::resource('expense', App\Http\Controllers\ExpenseController::class)->except('destory');
@@ -36,8 +34,6 @@ Route::group(['middleware' => ['auth', 'active']], function () {
     Route::resource('expense-item', App\Http\Controllers\ExpenseItemController::class);
     Route::get('expense-item/delete-form/{expenseItem}', [App\Http\Controllers\ExpenseItemController::class, 'deleteForm'])->name('expense-item.delete-form');
     Route::get('expense-item-submenu', [App\Http\Controllers\ExpenseItemController::class, 'submenu'])->name('expense-item.submenu');
-    
-    // start 3.0 work
     Route::resource('bank-name', App\Http\Controllers\BankNameController::class);
     Route::resource('deposit-other', App\Http\Controllers\DepositOtherController::class);
     Route::resource('employee', App\Http\Controllers\EmployeeController::class);
@@ -48,5 +44,7 @@ Route::group(['middleware' => ['auth', 'active']], function () {
 
     Route::resource('customer', App\Http\Controllers\CustomerController::class);
     Route::get('customer-search', [ App\Http\Controllers\CustomerController::class, 'search'])->name('customer-search');
-    // start 4.0 work
+    Route::resource('product', App\Http\Controllers\ProductController::class);
+    Route::resource('category', App\Http\Controllers\CategoryController::class);
+    Route::resource('brand', App\Http\Controllers\BrandController::class);
 });
