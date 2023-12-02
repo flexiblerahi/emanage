@@ -1,169 +1,59 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
-        <div class="sidebar-brand-text mx-3">Pushpo Dhara<br><span style="font-size:10px">Properties Ltd.</span></div>
-    </a>
-    <hr class="sidebar-divider my-0">
-    
-    @canany(['accountant-list', 'agent-list', 'customer-list', 'shareholder-list'])
-        <li class="nav-item">
-            @php
-                $is_req_user = isRequest(['user-detail*', 'employee*', 'customer*', 'agent*']);
-            @endphp
-            <a class="nav-link @if($is_req_user) collapsed @endif " href="#" data-toggle="collapse" data-target="#user"
-                aria-expanded="{{$is_req_user}}" aria-controls="user">
-                <i class="fa fa-users"></i>
-                <span>User</span>
-            </a>
-            @php
-                $users = ['accountant' => 'Accountant', 'shareholder' => 'Master Agent'];
-            @endphp
-            <div id="user" class="collapse @if($is_req_user) show @endif" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    @foreach ($users as $key => $user)
-                        @can($key.'-list')
-                            <a class="collapse-item @if(request()->is('user-detail*') && request()->get('user') == $key) active @endif" href="{{route('user-detail.index', ['user' => $key])}}">{{$user}}</a>
-                        @endcan
-                    @endforeach
-                    @can('customer-list')
-                        <a href="{{route('customer.index')}}" class="collapse-item @if(request()->is('customer*')) active @endif">Customer</a>
-                    @endcan
-                    @can('agent-list')
-                        <a href="{{route('agent.index')}}" class="collapse-item @if(request()->is('agent*')) active @endif">Agent</a>
-                    @endcan
-                    <a href="{{route('employee.index')}}" class="collapse-item @if(request()->is('employee*')) active @endif">Stuff</a>
-                </div>
-                
-            </div>
-        </li>
-    @endcanany
-
-    @canany(['expense-list', 'expense-type-list'])
-        <li class="nav-item">
-            <a class="nav-link @if(request()->is('expense*')) collapsed @endif " href="#" data-toggle="collapse" data-target="#expense"
-                aria-expanded="@if(request()->is('expense*')) true @else false @endif" aria-controls="expense">
-                <i class="fas fa-money-bill"></i>
-                <span>Expenditure</span>
-            </a>
-            <div id="expense" class="collapse @if(request()->is('expense*') || request()->is('pos/expense*')) show @endif" aria-labelledby="headingTwo" >
-                <div class="bg-white py-2 collapse-inner rounded">
-                    @can('expense-type-list')
-                        <a href="{{route('expense-item.index')}}" class="collapse-item  @if(request()->is('expense-item*')) active @endif">Type Setting</a>
-                    @endcan
-                    @can('expense-list')
-                        <a href="{{route('expense.index')}}" class="collapse-item  @if(request()->is('pos/expense*')) active @endif">All Expenses</a>
-                    @endcan
-                </div>
-            </div>
-        </li>
-    @endcanany
-
-    @canany(['payment-list', 'other-deposit-list'])
-        <li class="nav-item">
-            <a class="nav-link @if(request()->is('deposit*')) collapsed @endif " href="#" data-toggle="collapse" data-target="#deposit"
-                aria-expanded="@if(request()->is('deposit*')) true @else false @endif" aria-controls="deposit">
-                <i class="fa fa-credit-card"></i>
-                <span>Deposit</span>
-            </a>
-            <div id="deposit" class="collapse @if(request()->is('deposit*')) show @endif" aria-labelledby="headingThree" >
-                <div class="bg-white py-2 collapse-inner rounded">
-                    @can('payment-list')
-                        <a href="{{route('deposit-payment.index')}}" class="collapse-item  @if(request()->is('deposit-payment*') ||  request()->is('deposit-old-payment*')) active @endif">Sale Payment</a>
-                    @endcan
-                    @can('other-deposit-list')
-                        <a href="{{route('deposit-other.index')}}" class="collapse-item  @if(request()->is('deposit-other*')) active @endif">Other Deposit</a>
-                    @endcan
-                </div>
-            </div>
-        </li>
-    @endcanany
-    @canany(['salary-list', 'salary-type-list'])
-        <li class="nav-item">
-            @php
-                $is_salary_route = isRequest(['salary', 'type-salary']);
-            @endphp
-            <a class="nav-link @if($is_salary_route) collapsed @endif " href="#" data-toggle="collapse" data-target="#salary"
-                aria-expanded="{{ $is_salary_route }}" aria-controls="salary">
-                <i class="fa fa-gift" aria-hidden="true"></i>
-                <span>Salary</span>
-            </a>
-            <div id="salary" class="collapse @if($is_salary_route) show @endif" aria-labelledby="headingFour" >
-                <div class="bg-white py-2 collapse-inner rounded">
-                    @can('salary-type-list')
-                        <a href="{{route('type-salary.index')}}" class="collapse-item  @if(request()->is('type-salary*')) active @endif">Salary Type</a>
-                    @endcan
-                    @can('salary-list')
-                        <a href="{{route('salary.index')}}" class="collapse-item  @if(request()->is('salary*')) active @endif">Salary</a>
-                    @endcan
-                </div>
-            </div>
-        </li>
-    @endcanany
-
-    @can('role-list')
-        <li class="nav-item @if(request()->is('roles/*')) active @endif">
-            <a class="nav-link" href="{{route('roles.index')}}">
-                <i class="fa fa-user-secret" aria-hidden="true"></i>
-                <span>Role</span>
-            </a>
-        </li>
-    @endcan
-    @can('sale-list')
-        <li class="nav-item @if(request()->is('sale*')) active @endif">
-            <a class="nav-link" href="{{route('sale.index')}}">
-                <i class="fa fa-id-badge" aria-hidden="true"></i>
-                <span>Sale</span>
-            </a>
-        </li>
-    @endcan
-    <li class="nav-item">
-        <a class="nav-link @if(request()->is('bank*')) collapsed @endif " href="#" data-toggle="collapse" data-target="#bank"
-            aria-expanded="@if(request()->is('bank*')) true @else false @endif" aria-controls="bank">
-            <i class="fa fa-university" aria-hidden="true"></i>
-            <span>Bank</span>
+<div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
+    <!--begin::Brand-->
+    <div class="brand flex-column-center" id="kt_brand">
+        <!--begin::Logo-->
+        <a href="{{ url('/') }}" class="brand-logo" style="height: 100%; max-height: 100%;">
+            {{-- <h4 class="logo-alt mb-0 d-flex align-items-center">{{__('Turkistan')}}</h4> --}}
+            <img src="" alt="" srcset="">
         </a>
-        <div id="bank" class="collapse @if(request()->is('bank*')) show @endif" aria-labelledby="headingFour" >
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a href="{{route('bank-name.index')}}" class="collapse-item  @if(request()->is('bank-name*')) active @endif">Names</a>
-                @can('bank-info-list')
-                    <a href="{{route('bank-info.index')}}" class="collapse-item  @if(request()->is('bank-info*')) active @endif">Other Infos.</a>
-                @endcan
-            </div>
-        </div>
-    </li>
-    @can('land-purchase-list')
-        <li class="nav-item @if(request()->is('land-purchase*')) active @endif">
-            <a class="nav-link" href="{{route('land-purchase.index')}}">
-                <i class="fas fa-landmark"></i>
-                <span>Land Purchase</span>
-            </a>
-        </li>
-    @endcan
-    
-    @can('withdraw-list')
-        <li class="nav-item">
-            <a class="nav-link @if(isRequest(['withdraw*'])) collapsed @endif " href="#" data-toggle="collapse" data-target="#withdraw"
-                aria-expanded="@if(isRequest(['withdraw*'])) true @else false @endif" aria-controls="withdraw">
-                <i class="fas fa-money-bill"></i>
-                <span>Withdraw</span>
-            </a>
-            <div id="withdraw" class="collapse @if(isRequest(['withdraw*'])) show @endif" aria-labelledby="headingTwo" >
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a href="{{route('withdraw.index')}}" class="collapse-item  @if(request()->is('withdraw*')) active @endif">Other Users</a>
-                </div>
-            </div>
-        </li>
-    @endcan
-
-    @can('report-list')
-        <li class="nav-item @if(request()->is('report*')) active @endif">
-            <a class="nav-link" href="{{route('report.index')}}">
-                <i class="fa fa-chart-area"></i>
-                <span>Report</span>
-            </a>
-        </li>
-    @endcan
-    <hr class="sidebar-divider d-none d-md-block">
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        <!--end::Logo-->
+        <!--begin::Toggle-->
+        <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
+            <span class="svg-icon svg-icon svg-icon-xl">
+                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Angle-double-left.svg-->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <polygon points="0 0 24 0 24 24 0 24" />
+                        <path
+                            d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z"
+                            fill="#000000" fill-rule="nonzero" transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999)" />
+                        <path
+                            d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z"
+                            fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999)" />
+                    </g>
+                </svg>
+                <!--end::Svg Icon-->
+            </span>
+        </button>
+        <!--end::Toolbar-->
     </div>
-</ul>
+    <!--end::Brand-->
+    <!--begin::Aside Menu-->
+    <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
+        <!--begin::Menu Container-->
+        <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
+            <!--begin::Menu Nav-->
+            <ul class="menu-nav">
+                @php
+                    $routes = [
+                    //   ['parent' => ['route' => 'language', 'name' => 'Language'], 'childs' => ['list' => 'List', 'create' => 'Create']],
+                    //   ['parent' => ['route' => 'category', 'name' => 'Category'], 'childs' => ['list' => 'List', 'create' => 'Create']],
+                    //   ['parent' => ['route' => 'product', 'name' => 'Product'], 'childs' => ['list' => 'List', 'create' => 'Create']],
+                    //   ['parent' => ['route' => 'brand', 'name' => 'Brand'], 'childs' => ['list' => 'List', 'create' => 'Create']],
+                    //   ['parent' => ['route' => 'product-unit', 'name' => 'Product Unit'], 'childs' => ['list' => 'List', 'create' => 'Create']],
+                    //   ['parent' => ['route' => 'supplier', 'name' => 'Supplier'], 'childs' => ['list' => 'List', 'create' => 'Create']],
+                    //   ['parent' => ['route' => 'purchase', 'name' => 'Purchase'], 'childs' => ['list' => 'List', 'create' => 'Create']],
+                    //   ['parent' => ['route' => 'purchase.index', 'name' => 'Purchase']],
+                    ]
+                @endphp
+                @foreach ($routes as $route)  
+                  @include('layouts.component.aside', $route)
+                @endforeach
+                {{-- end  --}}
+            </ul>
+            <!--end::Menu Nav-->
+        </div>
+        <!--end::Menu Container-->
+    </div>
+    <!--end::Aside Menu-->
+</div>

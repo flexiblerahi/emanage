@@ -8,7 +8,7 @@ use App\Traits\TransactionBanktraits;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OtherDeposit extends Model
+class Deposit extends Model
 {
     use HasFactory, TransactionBanktraits, Entrytraits, Timetrait;
 

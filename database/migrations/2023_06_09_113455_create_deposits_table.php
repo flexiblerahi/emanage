@@ -8,18 +8,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('backup_expenses', function (Blueprint $table) {
+        Schema::create('deposits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('expense_id')->constrained('expenses');
-            $table->foreignId('expense_item_id')->constrained('expense_items');
+            $table->string('account_id', 500)->unique();
+            $table->text('other')->nullable();
+            $table->string('document')->nullable();
             $table->foreignId('entry')->constrained('user_details');
-            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('backup_expenses');
+        Schema::dropIfExists('other_deposits');
     }
 };

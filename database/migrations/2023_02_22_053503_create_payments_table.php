@@ -10,11 +10,6 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sale_id')->constrained('sales');
-            $table->json('commission')->nullable();
-            $table->string('commission_type');
-            $table->double('percentage')->default(0);
-            $table->foreignId('entry')->constrained('user_details');
             $table->timestamps();
         });
     }

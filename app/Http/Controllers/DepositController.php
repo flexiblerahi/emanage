@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\OtherDepositDataTable;
-use App\Models\BackupOtherDeposit;
+use App\DataTables\DepositDataTable;
 use App\Models\BankInfo;
 use App\Models\BankName;
 use App\Models\BankTransaction;
-use App\Models\OtherDeposit;
+use App\Models\Deposit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class DepositOtherController extends Controller
+class DepositController extends Controller
 {
     public function __construct() {
         $this->middleware('permission:other-deposit-list|new-other-deposit|other-deposit-edit|other-deposit-view', ['only' => ['index', 'create', 'store', 'edit', 'update', 'show']]);
@@ -20,7 +19,7 @@ class DepositOtherController extends Controller
         $this->middleware('permission:other-deposit-view', ['only' => ['show']]);
     }
 
-    public function index(OtherDepositDataTable $otherDepositDataTable)
+    public function index(DepositDataTable $depositDataTable)
     {
         $data['page'] = 'index';
         $data['title'] = 'Other Deposits';
@@ -29,13 +28,13 @@ class DepositOtherController extends Controller
             $data['modal_title'] = 'Other Deposit Detail';
             $data['modal_type'] = 'depositother';
             $data['modalbodyClass'] = 'p-0';
-            $otherDepositDataTable->setModaltype($data['modal_type']);
+            $depositDataTable->setModaltype($data['modal_type']);
         }
-        return $otherDepositDataTable->render('home', $data);
+        return $depositDataTable->render('home', $data);
     }
 
     public function show(string $id) {
-        $data['depositother'] = OtherDeposit::with(array_merge(['entrier'], BankTransaction::JOINTABLES))->findorfail($id);
+        $data['depositother'] = Deposit::with(array_merge(['entrier'], BankTransaction::JOINTABLES))->findorfail($id);
         if(request()->ajax()) {
             return view('depositother.show', $data)->render();
         } else abort(404);
@@ -49,7 +48,7 @@ class DepositOtherController extends Controller
     }
     
     public function edit(string $id) { //view('depositother.edit')
-        $data['depositOther'] = OtherDeposit::with(BankTransaction::JOINTABLES)->findorfail($id);
+        $data['depositOther'] = Deposit::with(BankTransaction::JOINTABLES)->findorfail($id);
         $data = array_merge($data, bankDetails($data['depositOther']));
         $data['title'] = 'Edit Deposit';
         $data['page'] = 'depositother.edit';
@@ -70,8 +69,8 @@ class DepositOtherController extends Controller
                 $otherDeposit->account_id = autoIdGenerator('other_deposits');
                 if(array_key_exists('document', $input)) $otherDeposit->document = newuploadFile('otherdeposit/', $otherDeposit->account_id, $input['document']);
             } else {
-                $otherDeposit = OtherDeposit::with('bank_transaction', 'bank_transaction.bank_info')->findorfail($id);
-                BackupOtherDeposit::store($otherDeposit, $input['comment']);
+                $otherDeposit = Deposit::with('bank_transaction', 'bank_transaction.bank_info')->findorfail($id);
+                BackupDeposit::store($otherDeposit, $input['comment']);
                 BankInfo::updateOldPayment($otherDeposit->bank_transaction->amount, $otherDeposit->bank_transaction->bank_info);
                 if(array_key_exists('document', $input)) $otherDeposit->document = newuploadFile('otherdeposit/', $otherDeposit->account_id, $input['document'], $otherDeposit->document);
             }

@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\OtherDeposit;
+use App\Models\Deposit;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -10,7 +10,7 @@ use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
 
-class OtherDepositDataTable extends DataTable
+class DepositDataTable extends DataTable
 {
     public $modal_type;
 
@@ -41,7 +41,7 @@ class OtherDepositDataTable extends DataTable
                 ->rawColumns(['action', 'date', 'amount', 'other']);
     }
 
-    public function query(OtherDeposit $model): QueryBuilder
+    public function query(Deposit $model): QueryBuilder
     {
         return $model->with('bank_transaction')->latest();
     }

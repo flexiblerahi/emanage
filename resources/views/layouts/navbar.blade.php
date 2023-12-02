@@ -1,47 +1,22 @@
-<!-- Topbar -->
-<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-    <!-- Sidebar Toggle (Topbar) -->
-    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-        <i class="fa fa-bars"></i>
-    </button>
-    <!-- Topbar Search -->
-    @php
-        $user_details = auth()->user()->userdetails;
-    @endphp   
-    <h4>{{$title}}</h4>
-    <!-- Topbar Navbar -->
-    <ul class="navbar-nav ml-auto">
-        <div class="topbar-divider d-none d-sm-block"></div>
-        <!-- Nav Item - User Information -->
-        <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ $user_details->name }}</span>
-                <img class="img-profile rounded-circle" src="{{ setImage($user_details->image) }}">
-            </a>
-            <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{{ route('user.profile.index', $user_details->account_id) }}">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                </a>
-                {{-- <a class="dropdown-item" href="{{route('setting.index')}}">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
-                </a> --}}
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
-                </a>
-                <form id="logout-form" action="{{route('logout')}}" method="POST" class="d-none">
-                    @csrf 
-                </form>
+<div id="kt_header" class="header header-fixed">
+    <div class="container-fluid d-flex align-items-stretch justify-content-between">
+        <div class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
+            <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+                <div class="flex align-self-center">
+
+                </div>
             </div>
-        </li>
-
-    </ul>
-
-</nav>
-<!-- End of Topbar -->
+        </div>
+        <div class="topbar">
+            <div class="topbar-item">
+                <div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
+                    <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">Hi,</span>
+                    <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3"></span>
+                    <span class="symbol symbol-lg-35 symbol-25 symbol-light-success">
+                        <span class="symbol-label font-size-h5 font-weight-bold"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
