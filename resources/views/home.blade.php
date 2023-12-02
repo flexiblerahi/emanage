@@ -13,4 +13,10 @@
         <title>{{ __($page_title) }}</title>
         @include('layouts.style')
     </head>
+    <body id="kt_body" class="header-fixed header-mobile-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+        @include('admin.includes.header_mobile')
+
+        {{-- scripted files --}}
+        @include('layouts.script')
+    </body>
 </html>
