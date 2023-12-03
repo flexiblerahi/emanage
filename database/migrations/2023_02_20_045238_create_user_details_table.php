@@ -21,7 +21,6 @@ return new class extends Migration
             $table->json('parent_name')->nullable()->comment('father name, and mother name');
             $table->tinyInteger('status')->default(0);
             $table->string('image')->nullable();
-            $table->double('income')->default(0)->comment('only agent and shareholder');
             $table->foreignId('user_id')->nullable()->constrained('users');
             $table->timestamps();
         });
