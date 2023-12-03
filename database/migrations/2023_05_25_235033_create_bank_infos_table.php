@@ -15,7 +15,7 @@ return new class extends Migration
             $table->double('amount')->default(0);
             $table->text('address')->nullable();
             $table->tinyInteger('status')->default(0);
-            $table->foreignId('entry')->constrained('user_details');
+            $table->foreignId('entry')->constrained('users');
             $table->timestamps();
         });
     }

@@ -10,12 +10,12 @@ return new class extends Migration
     {
         Schema::create('salaries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_detail_id')->constrained('user_details');
+            $table->foreignId('user_detail_id')->constrained('users');
             $table->foreignId('group_id')->nullable();
             $table->foreignId('type_id')->nullable()->constrained('salary_types');
             $table->text('other')->nullable();
             $table->string('monthly')->nullable();
-            $table->foreignId('entry')->constrained('user_details');
+            $table->foreignId('entry')->constrained('users');
             $table->timestamps();
         });
     }

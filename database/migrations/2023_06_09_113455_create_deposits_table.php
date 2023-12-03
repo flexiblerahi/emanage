@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('account_id', 500)->unique();
             $table->text('other')->nullable();
             $table->string('document')->nullable();
-            $table->foreignId('entry')->constrained('user_details');
+            $table->foreignId('entry')->constrained('users');
             $table->timestamps();
         });
     }

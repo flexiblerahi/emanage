@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('date')->nullable();
             $table->string('model_type');
             $table->unsignedBigInteger('model_id');
-            $table->foreignId('entry')->constrained('user_details');
+            $table->foreignId('entry')->constrained('users');
             $table->timestamps();
         });
     }

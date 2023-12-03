@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->tinyInteger('status')->default(1);
-            $table->foreignId('entry')->constrained('user_details');
+            $table->foreignId('entry')->constrained('users');
             $table->timestamps();
         });
     }

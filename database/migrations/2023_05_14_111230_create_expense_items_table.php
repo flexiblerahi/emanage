@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->foreignId('parent')->nullable()->constrained('expense_items')->cascadeOnDelete();
-            $table->foreignId('entry')->constrained('user_details');
+            $table->foreignId('entry')->constrained('users');
             $table->tinyInteger('status')->default(0)->comment('if expense have then 1 else 0');
             $table->timestamps();
         });

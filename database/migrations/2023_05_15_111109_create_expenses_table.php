@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('expense_item_id')->constrained('expense_items');
             $table->string('document')->nullable();
-            $table->foreignId('entry')->constrained('user_details');
+            $table->foreignId('entry')->constrained('users');
             $table->timestamps();
         });
     }

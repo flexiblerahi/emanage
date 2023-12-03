@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('salary_types', function (Blueprint $table) {
             $table->id();
             $table->string('title')->unique();
-            $table->foreignId('entry')->constrained('user_details');
+            $table->foreignId('entry')->constrained('users');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
