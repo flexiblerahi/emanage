@@ -36,7 +36,7 @@
             <ul class="menu-nav">
                 @php
                     $routes = [
-                    //   ['parent' => ['route' => 'language', 'name' => 'Language'], 'childs' => ['list' => 'List', 'create' => 'Create']],
+                      ['parent' => ['route' => 'roles', 'name' => 'Role'], 'childs' => ['index' => 'List', 'create' => 'Create']],
                     //   ['parent' => ['route' => 'category', 'name' => 'Category'], 'childs' => ['list' => 'List', 'create' => 'Create']],
                     //   ['parent' => ['route' => 'product', 'name' => 'Product'], 'childs' => ['list' => 'List', 'create' => 'Create']],
                     //   ['parent' => ['route' => 'brand', 'name' => 'Brand'], 'childs' => ['list' => 'List', 'create' => 'Create']],

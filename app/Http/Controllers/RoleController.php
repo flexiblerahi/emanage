@@ -6,6 +6,7 @@ use App\DataTables\RoleDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -23,14 +24,22 @@ class RoleController extends Controller
         return $dataTable->render('home', $data);
     }
 
-    public function edit($id)//view('admin.role.edit')
+    public function create() //view('role.create')
+    {
+        $data['page'] = 'role.create';
+        $data['title'] = 'Role';
+        $data['title'] = 'New Role';
+        return view('home', $data);
+    }
+
+    public function edit($id)//view('role.edit')
     {
         $data['role'] = Role::find($id);
         $permissions = Permission::get();
         // $countPermissions = count($data['permissions']) / 2;
         $data['permissions_chunk'] = $permissions->chunk(3);
         $data['rolePermissions'] = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')->all();
-        $data['page'] = 'admin.role.edit';
+        $data['page'] = 'role.edit';
         $data['title'] = 'Permission Edit';
         return view('home', $data);
     }
@@ -41,5 +50,17 @@ class RoleController extends Controller
         $role = Role::find($id);
         $role->syncPermissions($request->input('permission'));
         return redirect()->route('roles.index')->with(['message' =>'Updated Successfully', 'alert-type' => 'success']);;
+    }
+
+    public function store(Request $request)
+    {
+        $rules = [
+            'name' => ['required', 'unique:roles,name'],
+            'is_auth' => ['nullable']
+        ];
+        $input = $this->validate($request, $rules);
+        $input['is_auth'] = isset($request->is_auth) ? 0 : 1;
+        $createRole = Role::newRole($input);
+        return redirect()->route('roles.index')->with(['message' => $createRole, 'alert-type' => 'success']);
     }
 }

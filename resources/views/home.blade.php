@@ -13,7 +13,7 @@
         @include('layouts.style')
     </head>
     <body id="kt_body" class="header-fixed header-mobile-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
-        @include('layouts.mobile_navbar')
+        {{-- @include('layouts.mobile_navbar') --}}
         <div class="d-flex flex-column flex-root">
             <div class="d-flex flex-row flex-column-fluid page">
                     <!--begin::sidebar-->
@@ -21,7 +21,7 @@
                     <!--end::sidebar-->
                     <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
                         <!--begin::Header-->
-                        @include("layouts.navbar")
+                        {{-- @include("layouts.navbar") --}}
                         <!--end::Header-->
                         <!--begin::Content-->
                         <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -32,10 +32,15 @@
                             <!--begin::Container-->
                             <div class="container m-0">
                                 <!--begin::Dashboard-->
-                                @yield('content')
-                                @isset($page)
-                                    @include($page)
-                                @endisset
+                                <div class="card">
+                                    <div class="card-body">
+                                        @yield('content')
+                                        @isset($page)
+                                            @include($page)
+                                        @endisset
+                                    </div>
+                                </div>
+                                
                                 <!--end::Dashboard-->
                             </div>
                             <!--end::Container-->
