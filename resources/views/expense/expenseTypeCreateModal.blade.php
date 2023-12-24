@@ -31,7 +31,7 @@
                                     </div>
                                 </div>
                                 <div class="col-1 text-right mb-2">
-                                    <button type="button" class="btn btn-primary" id="addother"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    <button type="button" class="btn btn-primary" id="addother"><i class="text-white fa fa-plus" aria-hidden="true"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="col-1 text-right">
-                <button type="button" class="btn btn-danger remove" ><i class="fa fa-minus" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-danger remove" ><i class="text-white fa fa-minus" aria-hidden="true"></i></button>
             </div>
         </div>
     </div>

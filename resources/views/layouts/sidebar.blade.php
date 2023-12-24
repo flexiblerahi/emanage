@@ -37,13 +37,13 @@
                 @php
                     $routes = [
                       ['parent' => ['route' => 'roles', 'name' => 'Role'], 'childs' => ['index' => 'List', 'create' => 'Create']],
-                    //   ['parent' => ['route' => 'category', 'name' => 'Category'], 'childs' => ['list' => 'List', 'create' => 'Create']],
-                    //   ['parent' => ['route' => 'product', 'name' => 'Product'], 'childs' => ['list' => 'List', 'create' => 'Create']],
-                    //   ['parent' => ['route' => 'brand', 'name' => 'Brand'], 'childs' => ['list' => 'List', 'create' => 'Create']],
-                    //   ['parent' => ['route' => 'product-unit', 'name' => 'Product Unit'], 'childs' => ['list' => 'List', 'create' => 'Create']],
-                    //   ['parent' => ['route' => 'supplier', 'name' => 'Supplier'], 'childs' => ['list' => 'List', 'create' => 'Create']],
-                    //   ['parent' => ['route' => 'purchase', 'name' => 'Purchase'], 'childs' => ['list' => 'List', 'create' => 'Create']],
-                    //   ['parent' => ['route' => 'purchase.index', 'name' => 'Purchase']],
+                      ['parent' => ['route' => 'bank-name.index', 'name' => 'Bank Name', 'active' => 'bank-name']],
+                      ['parent' => ['route' => 'bank-info', 'name' => 'Bank Info'], 'childs' => ['index' => 'List', 'create' => 'Create']],
+                      ['parent' => ['route' => 'expense-item', 'name' => 'Expense Item'], 'childs' => ['index' => 'List', 'create' => 'Create']],
+                      ['parent' => ['route' => 'expense', 'name' => 'Expense'], 'childs' => ['index' => 'List', 'create' => 'Create']],
+                      ['parent' => ['route' => 'category', 'name' => 'Category'], 'childs' => ['index' => 'List', 'create' => 'Create']],
+                      ['parent' => ['route' => 'brand.index', 'name' => 'Brand', 'active' => 'brand']],
+                      ['parent' => ['route' => 'product', 'name' => 'Product', 'active' => 'product'], 'childs' => ['index' => 'List', 'create' => 'Create']],
                     ]
                 @endphp
                 @foreach ($routes as $route)  

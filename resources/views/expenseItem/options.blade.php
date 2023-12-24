@@ -22,9 +22,9 @@
                 <label for="title_{{$parent->id}}">New {{$parent->title}}</label>
                 <br>
                 @if(!$edit)
-                    <button type="button" class="btn btn-primary btn-sm addnewbtn" data-parent="{{$parent->id}}" data-toggle="modal" data-target="#addnew"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-primary btn-sm addnewbtn" data-parent="{{$parent->id}}" data-toggle="modal" data-target="#addnew"><i class="text-white fa fa-plus" aria-hidden="true"></i></button>
                 @endif
-                <button type="button" class="btn btn-danger btn-sm removebtn" id="remove-{{$parent->id}}" data-parent="{{$parent->id}}"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-danger btn-sm removebtn" id="remove-{{$parent->id}}" data-parent="{{$parent->id}}"><i class="text-white fa fa-minus" aria-hidden="true"></i></button>
             </div>
         </div>
     @else
@@ -32,7 +32,7 @@
             <div class="form-group">
                 <label for="title_x">New Option</label>
                 <br>
-                <button type="button" class="btn btn-primary btn-sm addnewbtn" data-parent="0" data-toggle="modal" data-target="#addnew"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-primary btn-sm addnewbtn" data-parent="0" data-toggle="modal" data-target="#addnew"><i class="text-white fa fa-plus" aria-hidden="true"></i></button>
             </div>
         </div>   
     @endif

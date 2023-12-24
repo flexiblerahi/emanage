@@ -8,7 +8,7 @@
 <script src="{{url('js/select2.min.js')}}"></script>
 <script src="{{url('js/sweetalert.js')}}"></script>
 
-<script src="{{ url('dashboard/plugins/global/plugins.bundle.js') }}"></script>
+{{-- <script src="{{ url('dashboard/plugins/global/plugins.bundle.js') }}"></script> --}}
 <script src="{{ url('dashboard/js/scripts.bundle.js') }}"></script>
 
 <script>

@@ -26,7 +26,7 @@ class PaymentDataTable extends DataTable
         ->addColumn('action', function($query) {
             $tag = '';
             if(auth()->user()->can('old-payment-edit')) {
-                $tag .= '<a class="btn-sm btn-primary mr-1" href="' . route('deposit-payment.edit', $query->id) . '"><i class="far fa-edit"></i></a>';
+                $tag .= '<a class="btn-sm btn-primary mr-1" href="' . route('deposit-payment.edit', $query->id) . '"><i class="text-white far fa-edit"></i></a>';
             }
             return $tag;
         })

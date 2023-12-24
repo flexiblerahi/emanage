@@ -104,7 +104,7 @@
             <div class="col">
                 <div class="row">
                     <div class="col-4 font-weight-bold">Legal Document:</div>
-                    <div class="col"><a target="_blank" href="{{url($investment->document)}}"><i class="fa fa-file" aria-hidden="true"></i> {{filename($investment->document)}}</a></div>
+                    <div class="col"><a target="_blank" href="{{url($investment->document)}}"><i class="text-white fa fa-file" aria-hidden="true"></i> {{filename($investment->document)}}</a></div>
                 </div>
             </div>
             <div class="col">

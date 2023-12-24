@@ -28,11 +28,11 @@ class ExpenseItemDataTable extends DataTable
                 ->addColumn('action', function($query) {
                     $tag = '';
                     if(auth()->user()->can('expense-type-edit')) {
-                        $tag .= '<a class="btn-sm btn-primary mr-1 editExpenseItem text-white" data-toggle="modal" data-target="#editExpenseId" data-link="' . route('expense-item.edit', $query->id) . '"><i class="far fa-edit"></i></a>';
+                        $tag .= '<a class="btn-sm btn-primary mr-1 editExpenseItem text-white" data-toggle="modal" data-target="#editExpenseId" data-link="' . route('expense-item.edit', $query->id) . '"><i class="text-white far fa-edit"></i></a>';
                     }
                     if(auth()->user()->can('expense-type-delete')) {
                         if($query->status == 0) {
-                            $tag .= '<a class="btn-sm btn-danger mr-1 deleteExpenseItem text-white" data-toggle="modal" data-target="#deleteExpenseId" data-link="' . route('expense-item.delete-form', $query->id) . '"><i class="fa fa-trash"></i></a>';
+                            $tag .= '<a class="btn-sm btn-danger mr-1 deleteExpenseItem text-white" data-toggle="modal" data-target="#deleteExpenseId" data-link="' . route('expense-item.delete-form', $query->id) . '"><i class="text-white fa fa-trash"></i></a>';
                         }
                     }
                     return $tag;
@@ -54,7 +54,7 @@ class ExpenseItemDataTable extends DataTable
                     ->orderBy(0)
                     ->selectStyleSingle();
         if(auth()->user()->can('new-expense-type')) {
-            $builder = $builder->dom('Bfrtip')->buttons([ Button::make('create')->text('<i class="fa fa-plus"></i>&nbsp;Create') ]);
+            $builder = $builder->dom('Bfrtip')->buttons([ Button::make('create')->text('<i class="text-white fa fa-plus"></i>&nbsp;Create') ]);
         }
         return $builder;
     }

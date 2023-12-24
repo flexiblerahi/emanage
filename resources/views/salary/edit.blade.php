@@ -84,7 +84,7 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
-                <label for="type_id">Other Type <button type="button" class="btn btn-sm btn-primary"  data-toggle="modal" data-target="#newsalarytype"><i class="fa fa-plus" aria-hidden="true"></i></button></label>
+                <label for="type_id">Other Type <button type="button" class="btn btn-sm btn-primary"  data-toggle="modal" data-target="#newsalarytype"><i class="text-white fa fa-plus" aria-hidden="true"></i></button></label>
                 <select class="form-control select2" name="type_id" id="type_id">
                     <option value="">Select Type</option>
                     @foreach ($salaryTypes as $type)

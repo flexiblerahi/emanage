@@ -21,7 +21,7 @@ return new class extends Migration
             $table->double('tax')->default(0);
             $table->text('description')->nullable();
             $table->tinyInteger('status')->default(0);
-            $table->foreignId('entry')->constrained('users');  
+            $table->foreignId('entry')->constrained('users');
             $table->timestamps();
         });
     }

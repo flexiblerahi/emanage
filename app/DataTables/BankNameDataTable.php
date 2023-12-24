@@ -31,10 +31,10 @@ class BankNameDataTable extends DataTable
             ->addColumn('action', function($query) {
                 $tag = '';
                 // if(auth()->user()->can('investment-edit')) {
-                    $tag .= '<a class="btn-sm btn-success mr-1 editbank text-white" data-toggle="modal" data-target="#createBankId" data-link="' . route('bank-name.edit', $query->id) . '"><i class="far fa-edit"></i></a>';
+                    $tag .= '<a class="btn-sm btn-success mr-1 editbank text-white" data-toggle="modal" data-target="#createBankId" data-link="' . route('bank-name.edit', $query->id) . '"><i class="text-white far fa-edit"></i></a>';
                 // }
                 // if(auth()->user()->can('investment-view')) {
-                    $tag .= '<a class="btn-sm btn-primary showmodal text-white mr-1" data-toggle="modal" data-target="#'.$this->modal_type.'Id" data-link="' . route('bank-name.show', $query->id) . '"><i class="far fa-eye"></i></a>';
+                    $tag .= '<a class="btn-sm btn-primary showmodal text-white mr-1" data-toggle="modal" data-target="#'.$this->modal_type.'Id" data-link="' . route('bank-name.show', $query->id) . '"><i class="text-white far fa-eye"></i></a>';
                 // }
                 return $tag;
             })
@@ -51,7 +51,7 @@ class BankNameDataTable extends DataTable
         $html = $this->builder()->setTableId('bankname-table')->columns($this->getColumns())->minifiedAjax()->orderBy(0)->selectStyleSingle();
         // if(in_array($this->user, ['agent', 'customer']) && auth()->user()->can('new-'.$this->user)) {
             $html = $html->dom('Bfrtip')->buttons(
-                Button::make('create')->text('<i class="fa fa-plus"></i>&nbsp;Create')->action('function() { $("#createBankId").modal("show"); }')
+                Button::make('create')->text('<i class="text-white fa fa-plus"></i>&nbsp;Create')->action('function() { $("#createBankId").modal("show"); }')
             );
         // }
         return $html;

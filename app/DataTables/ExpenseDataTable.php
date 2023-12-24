@@ -40,10 +40,10 @@ class ExpenseDataTable extends DataTable
             ->addColumn('action', function($query) {
                 $tag = '';
                 if(auth()->user()->can('expense-edit')) {
-                    $tag .= '<a class="btn-sm btn-primary mr-1" href="' . route('expense.edit', $query->id) . '"><i class="far fa-edit"></i></a>';
+                    $tag .= '<a class="btn-sm btn-primary mr-1" href="' . route('expense.edit', $query->id) . '"><i class="text-white far fa-edit"></i></a>';
                 }
                 if(auth()->user()->can('expense-view')) {
-                    $tag .= '<a class="btn-sm btn-primary showmodal text-white mr-1" data-toggle="modal" data-target="#'.$this->modal_type.'Id" data-link="' . route('expense.show', $query->id) . '"><i class="far fa-eye"></i></a>';
+                    $tag .= '<a class="btn-sm btn-primary showmodal text-white mr-1" data-toggle="modal" data-target="#'.$this->modal_type.'Id" data-link="' . route('expense.show', $query->id) . '"><i class="text-white far fa-eye"></i></a>';
                 }
                 return $tag;
             })
@@ -64,7 +64,7 @@ class ExpenseDataTable extends DataTable
                     ->orderBy(1)
                     ->selectStyleSingle();
         if(auth()->user()->can('new-expense')) {
-            $builder = $builder->dom('Bfrtip')->buttons([ Button::make('create')->text('<i class="fa fa-plus"></i>&nbsp;Create') ]);
+            $builder = $builder->dom('Bfrtip')->buttons([ Button::make('create')->text('<i class="text-white fa fa-plus"></i>&nbsp;Create') ]);
         }
         return $builder;
     }

@@ -6,7 +6,7 @@
 <div class="container mb-2">
     <div class="row">
         <div class="col">
-            <a id="new-salary" class="btn btn-primary" href="{{route('salary.create')}}" role="button"><i class="fa fa-plus" aria-hidden="true"></i> New Salary</a>
+            <a id="new-salary" class="btn btn-primary" href="{{route('salary.create')}}" role="button"><i class="text-white fa fa-plus" aria-hidden="true"></i> New Salary</a>
         </div>
     </div>
 </div>

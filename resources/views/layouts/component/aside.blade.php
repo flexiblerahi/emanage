@@ -15,16 +15,16 @@
             </svg>
             </span>
             <span class="menu-text">{{__($parent['name'])}}</span>
-            <i class="menu-arrow"></i>
+            <i class=" menu-arrow"></i>
         </a>
         <div class="menu-submenu">
-            <i class="menu-arrow"></i>
+            <i class=" menu-arrow"></i>
             <ul class="menu-subnav">
                 @foreach ($childs as $key => $name)  
                     
                     <li class="menu-item " aria-haspopup="true">
                         <a href="{{route($parent['route'].'.'.$key)}}" class="menu-link">
-                            <i class="menu-bullet menu-bullet-line">
+                            <i class=" menu-bullet menu-bullet-line">
                             <span></span>
                             </i>
                             <span class="menu-text">{{__($name)}}</span>
@@ -35,7 +35,7 @@
         </div>
     </li>
 @else
-    <li class="menu-item " aria-haspopup="true" data-menu-toggle="hover">
+    <li class="menu-item  {{ request()->is($parent['active']) ? 'menu-item-active' : null }}" aria-haspopup="true" data-menu-toggle="hover">
         <a href="{{route($parent['route'])}}" class="menu-link menu-toggle">
         <span class="svg-icon menu-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">

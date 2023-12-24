@@ -36,7 +36,7 @@ class BankTransactionDataTable extends DataTable
                     ->selectStyleSingle();
         $builder = $builder->dom('Bfrtip')
                     ->buttons([
-                        Button::make('create')->text('<i class="fa fa-plus"></i>&nbsp;Create')
+                        Button::make('create')->text('<i class="text-white fa fa-plus"></i>&nbsp;Create')
                     ]);
 
         return $builder;

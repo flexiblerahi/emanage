@@ -37,10 +37,10 @@ class SalaryDataTable extends DataTable
             ->addColumn('action', function($query) {
                 $tag = '';
                 if(auth()->user()->can('salary-edit')) {
-                    $tag .= '<a class="btn-sm btn-primary mr-1" href="' . route('salary.edit', $query->id) . '"><i class="far fa-edit"></i></a>';
+                    $tag .= '<a class="btn-sm btn-primary mr-1" href="' . route('salary.edit', $query->id) . '"><i class="text-white far fa-edit"></i></a>';
                 }
                 if(auth()->user()->can('salary-view')) {
-                    $tag .= '<a class="btn-sm btn-primary showmodal text-white mr-1" data-toggle="modal" data-target="#'.$this->modal_type.'Id" data-link="' . route('salary.show', $query->id) . '"><i class="far fa-eye"></i></a>';
+                    $tag .= '<a class="btn-sm btn-primary showmodal text-white mr-1" data-toggle="modal" data-target="#'.$this->modal_type.'Id" data-link="' . route('salary.show', $query->id) . '"><i class="text-white far fa-eye"></i></a>';
                 }
                 return $tag;
             })

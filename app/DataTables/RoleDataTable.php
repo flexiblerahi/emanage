@@ -13,7 +13,7 @@ class RoleDataTable extends DataTable
         $datatable = datatables()->eloquent($query);
         $datatable = $datatable->addColumn('action', function ($query) {
             if(auth()->user()->can('permission-edit')) {
-                    return '<a class="btn-sm btn-primary" href="' . route('roles.edit',  $query->id) . '"><i class="far fa-edit"></i></a>'; 
+                    return '<a class="btn-sm btn-primary" href="' . route('roles.edit',  $query->id) . '"><i class="text-white far fa-edit"></i></a>'; 
                 }
             });
         $datatable = $datatable->rawColumns(['action']);

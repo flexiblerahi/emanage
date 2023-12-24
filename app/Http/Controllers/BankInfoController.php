@@ -43,7 +43,7 @@ class BankInfoController extends Controller
     {
         $data['title'] = 'New Bank Account';
         $data['page'] = 'bankinfo.create';
-        $data['names'] = BankName::where('status', 1)->whereNotIn('id', [1])->get(['id', 'name']);
+        $data['names'] = BankName::where('status', 1)->get(['id', 'name']);
         return view('home', $data);
     }
     
@@ -52,7 +52,7 @@ class BankInfoController extends Controller
         $data['bankInfo'] = BankInfo::findorfail($id);
         $data['title'] = 'Edit Bank Information';
         $data['page'] = 'bankinfo.edit';
-        $data['bankNames'] = BankName::where('status', 1)->whereNotIn('id', [1])->get(['id', 'name']);
+        $data['bankNames'] = BankName::where('status', 1)->get(['id', 'name']);
         return view('home', $data);
     }
 
@@ -69,8 +69,6 @@ class BankInfoController extends Controller
         $bank_info = BankInfo::findorfail($id);
         DB::beginTransaction();
         try {
-            BackupBankInfo::store($bank_info, $validated['comment']);
-            unset($validated['comment']);
             $bank_info = $this->upstore($validated, $request, $bank_info);
             DB::commit();
         } catch (\Exception $e) {
@@ -87,14 +85,15 @@ class BankInfoController extends Controller
         if(is_null($id)) $validate['account_id'] = ['required', 'unique:bank_infos,account_id'];
         else {
             $validate['account_id'] = ['required', 'unique:bank_infos,account_id,'. $id];
-            $validate['comment'] = ['required'];        
         }
         return $request->validate($validate);
     }
 
     public function upstore($input, $request, $bank_info)
     {
+        
         $input['status'] = isStatus($request->input('status'));
+    
         $input['entry'] = entry();
         $bank_info = setobj($input, $bank_info);
         $bank_info->save();

@@ -31,10 +31,10 @@ class DepositDataTable extends DataTable
                 ->addColumn('action', function($query) {
                     $tag = '';
                     if(auth()->user()->can('other-deposit-edit')) {
-                        $tag .= '<a class="btn-sm btn-primary mr-1" href="' . route('deposit-other.edit', $query->id) . '"><i class="far fa-edit"></i></a>';
+                        $tag .= '<a class="btn-sm btn-primary mr-1" href="' . route('deposit-other.edit', $query->id) . '"><i class="text-white far fa-edit"></i></a>';
                     }
                     if(auth()->user()->can('other-deposit-view')) {
-                        $tag .= '<a class="btn-sm btn-primary showmodal text-white mr-1" data-toggle="modal" data-target="#'.$this->modal_type.'Id" data-link="' . route('deposit-other.show', $query->id) . '"><i class="far fa-eye"></i></a>';
+                        $tag .= '<a class="btn-sm btn-primary showmodal text-white mr-1" data-toggle="modal" data-target="#'.$this->modal_type.'Id" data-link="' . route('deposit-other.show', $query->id) . '"><i class="text-white far fa-eye"></i></a>';
                     }
                     return $tag;
                 })
@@ -55,7 +55,7 @@ class DepositDataTable extends DataTable
                         ->orderBy(1)
                         ->selectStyleSingle();
         if(auth()->user()->can('new-other-deposit')) {
-            $build = $build->dom('Bfrtip')->buttons([ Button::make('create')->text('<i class="fa fa-plus"></i>&nbsp;New Deposit') ]);
+            $build = $build->dom('Bfrtip')->buttons([ Button::make('create')->text('<i class="text-white fa fa-plus"></i>&nbsp;New Deposit') ]);
         }
         return $build;
     }

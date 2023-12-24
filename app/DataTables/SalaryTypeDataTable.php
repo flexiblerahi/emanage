@@ -17,10 +17,10 @@ class SalaryTypeDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query) {
                 if(auth()->user()->can('salary-type-edit')) {
-                    $tag = '<a class="btn-sm btn-primary mr-1" href="' . route('type-salary.edit', $query->id) . '"><i class="far fa-edit"></i></a>';
+                    $tag = '<a class="btn-sm btn-primary mr-1" href="' . route('type-salary.edit', $query->id) . '"><i class="text-white far fa-edit"></i></a>';
                 }
                 if(auth()->user()->can('salary-type-delete')) {
-                    $tag .= '<a class="btn-sm btn-danger mr-1 deleteSalaryType text-white" data-toggle="modal" data-target="#deleteSalaryTypeId" data-link="' . route('type-salary.delete-form', $query->id) . '"><i class="fa fa-trash"></i></a>';
+                    $tag .= '<a class="btn-sm btn-danger mr-1 deleteSalaryType text-white" data-toggle="modal" data-target="#deleteSalaryTypeId" data-link="' . route('type-salary.delete-form', $query->id) . '"><i class="text-white fa fa-trash"></i></a>';
                 }
                 return $tag;
             })
@@ -45,7 +45,7 @@ class SalaryTypeDataTable extends DataTable
         $html = $this->builder()->setTableId('salarytype-table')->columns($this->getColumns())->minifiedAjax()->orderBy(0)->selectStyleSingle();
         if(auth()->user()->can('new-salary-type')) {
             $html = $html->dom('Bfrtip')->buttons(
-                Button::make('create')->text('<i class="fa fa-plus"></i>&nbsp;Create')
+                Button::make('create')->text('<i class="text-white fa fa-plus"></i>&nbsp;Create')
             );
         }
         return $html;

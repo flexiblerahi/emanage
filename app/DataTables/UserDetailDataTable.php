@@ -38,10 +38,10 @@ class UserDetailDataTable extends DataTable
                         $role = array_flip(UserDetail::USER);
                         $tag = '';
                         if(auth()->user()->can($this->user.'-view')) {
-                            $tag .= '<a class="btn-sm btn-primary showmodal text-white mr-1" data-role="'.$this->user.'" data-toggle="modal" data-target="#'.$this->user.'Id" data-link="' . route('user-detail.show', [$query->id, 'user' => $this->user]) . '"><i class="far fa-eye"></i></a>';
+                            $tag .= '<a class="btn-sm btn-primary showmodal text-white mr-1" data-role="'.$this->user.'" data-toggle="modal" data-target="#'.$this->user.'Id" data-link="' . route('user-detail.show', [$query->id, 'user' => $this->user]) . '"><i class="text-white far fa-eye"></i></a>';
                         }
                         if(auth()->user()->can($this->user.'-edit')) {
-                            if(in_array($role[$query->role], ['agent', 'customer'])) $tag .= '<a class="btn-sm btn-primary" href="' . route('user-detail.edit',  [$query->id, 'user' => $role[$query->role]]) . '"><i class="far fa-edit"></i></a>';
+                            if(in_array($role[$query->role], ['agent', 'customer'])) $tag .= '<a class="btn-sm btn-primary" href="' . route('user-detail.edit',  [$query->id, 'user' => $role[$query->role]]) . '"><i class="text-white far fa-edit"></i></a>';
                         }
                         return $tag;
                     });

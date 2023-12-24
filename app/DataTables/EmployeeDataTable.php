@@ -34,10 +34,10 @@ class EmployeeDataTable extends DataTable
         $column = $column->addColumn('action', function ($query) {
             $tag = '';
             // if(auth()->user()->can('investment-edit')) {
-                $tag .= '<a class="btn-sm btn-primary mr-1" href="' . route('employee.edit', $query->id) . '"><i class="far fa-edit"></i></a>';
+                $tag .= '<a class="btn-sm btn-primary mr-1" href="' . route('employee.edit', $query->id) . '"><i class="text-white far fa-edit"></i></a>';
             // }
             // if(auth()->user()->can('investment-view')) {
-                $tag .= '<a class="btn-sm btn-primary showmodal text-white mr-1" data-toggle="modal" data-target="#'.$this->modal_type.'Id" data-link="' . route('employee.show', $query->id) . '"><i class="far fa-eye"></i></a>';
+                $tag .= '<a class="btn-sm btn-primary showmodal text-white mr-1" data-toggle="modal" data-target="#'.$this->modal_type.'Id" data-link="' . route('employee.show', $query->id) . '"><i class="text-white far fa-eye"></i></a>';
             // }
             return $tag;
         });
@@ -53,7 +53,7 @@ class EmployeeDataTable extends DataTable
     {
         $html = $this->builder()->setTableId('employee-table')->scrollX(true)->columns($this->getColumns())->minifiedAjax()->orderBy(0)->selectStyleSingle();
         $html = $html->dom('Bfrtip')->buttons(
-            Button::make('create')->text('<i class="fa fa-plus"></i>&nbsp;Create')->action("window.location = '".route('employee.create')."';")
+            Button::make('create')->text('<i class="text-white fa fa-plus"></i>&nbsp;Create')->action("window.location = '".route('employee.create')."';")
         );
         return $html;
     }

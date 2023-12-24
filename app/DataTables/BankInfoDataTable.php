@@ -29,11 +29,11 @@ class BankInfoDataTable extends DataTable
             })
             ->addColumn('action', function($query) {
                 $tag = '';
-                if(auth()->user()->can('bank-info-edit') && ($query->bank_name_id != 1)) {
-                    $tag .= '<a class="btn-sm btn-primary mr-1" href="' . route('bank-info.edit', $query->id) . '"><i class="far fa-edit"></i></a>';
+                if(auth()->user()->can('bank-info-edit')) {
+                    $tag .= '<a class="btn-sm btn-primary mr-1" href="' . route('bank-info.edit', $query->id) . '"><i class="text-white far fa-edit"></i></a>';
                 }
                 if(auth()->user()->can('bank-info-view')) {
-                    $tag .= '<a class="btn-sm btn-primary showmodal text-white mr-1" data-toggle="modal" data-target="#'.$this->modal_type.'Id" data-link="' . route('bank-info.show', $query->id) . '"><i class="far fa-eye"></i></a>';
+                    $tag .= '<a class="btn-sm btn-primary showmodal text-white mr-1" data-toggle="modal" data-target="#'.$this->modal_type.'Id" data-link="' . route('bank-info.show', $query->id) . '"><i class="text-white far fa-eye"></i></a>';
                 }
                 return $tag;
             })
@@ -41,7 +41,7 @@ class BankInfoDataTable extends DataTable
                 return setStatus($query->status);
             })
             ->addColumn('amount', function($query) {
-                return tk($query->amount);
+                return $query->amount;
             })
             ->rawColumns(['created_at', 'amount', 'action', 'status']);
     }
@@ -60,7 +60,7 @@ class BankInfoDataTable extends DataTable
                     ->orderBy(0)
                     ->selectStyleSingle();
         if(auth()->user()->can('new-bank-info')) {
-            $builder = $builder->dom('Bfrtip')->buttons([ Button::make('create')->text('<i class="fa fa-plus"></i>&nbsp;Create') ]);
+            $builder = $builder->dom('Bfrtip')->buttons([ Button::make('create')->text('<i class="text-white fa fa-plus"></i>&nbsp;Create') ]);
         }
         return $builder;
     }

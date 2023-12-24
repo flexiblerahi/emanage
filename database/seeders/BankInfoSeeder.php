@@ -14,7 +14,7 @@ class BankInfoSeeder extends Seeder
 
         DB::table('bank_names')->insert([
             [
-                'name' => 'Cash',
+                'name' => 'Demo Bank',
                 'status' => 1,
                 'entry' => 1,
                 'created_at' => $nowtime,

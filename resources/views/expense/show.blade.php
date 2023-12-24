@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-2 font-weight-bold">Document:</div>
                         <div class="col">
-                            <a href="{{url($expense->document)}}" target="_blank" rel="paid document"><i class="fa fa-file" aria-hidden="true"></i> Pay Proof document</a>
+                            <a href="{{url($expense->document)}}" target="_blank" rel="paid document"><i class="text-white fa fa-file" aria-hidden="true"></i> Pay Proof document</a>
                         </div>
                     </div>
                 </div>

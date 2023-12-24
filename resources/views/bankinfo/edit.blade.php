@@ -1,5 +1,5 @@
 @php
-    $button = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createBankId"><i class="fa fa-plus" aria-hidden="true"></i> New Bank</button>';
+    $button = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createBankId"><i class="text-white fa fa-plus" aria-hidden="true"></i> New Bank</button>';
 @endphp
 <style>
     .select2-results__option:hover{
@@ -42,16 +42,7 @@
     </div>
     <div class="row">
         <div class="col-4">
-            @include('modules.checkbox', ['status' => $bankInfo->status])
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            @include('modules.editor')
-            <div class="form-group">
-              <label for="comment">Comment</label>
-              <textarea class="form-control" name="comment" id="comment" rows="3" placeholder="Please Add the reason why need to change?">  </textarea>
-            </div>
+            @include('modules.checkbox', ['checked' => $bankInfo->status, 'title' => 'Status', 'name' => 'status'])
         </div>
     </div>
     <button type="submit" class="btn btn-primary btn-block" role="button">Update</button>

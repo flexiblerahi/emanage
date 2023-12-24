@@ -1,4 +1,4 @@
-<style>
+`<style>
     .select2-results__option:hover{
         background-color: #3875d7 !important; 
         color:white !important;
@@ -52,7 +52,6 @@
                             "id" : value 
                         },
                         success: function (response) {
-                            console.log('response :>> ', response);
                             toastr.success('Expense types found Successfully');
                             $('#'+id).attr("disabled", true);
                             $('#otheroptions').append(response.view);
@@ -99,6 +98,7 @@
                         select.append(newOption);
                         select.trigger('change');
                         $('#addnew').modal('hide');
+                        $('.modal-backdrop').remove();
                     },
                     error: function (response) {
                         toastr.error(response.responseJSON.message);

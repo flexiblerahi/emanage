@@ -65,6 +65,7 @@ class ExpenseItemController extends Controller
     }
 
     public function store(Request $request) { 
+        dd($request->all());
         $rules = array();
         foreach($request->all() as $key => $value) {
             if(str_contains($key, 'title')) {

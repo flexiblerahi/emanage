@@ -1,5 +1,5 @@
 @php
-    $button = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createBankId"><i class="fa fa-plus" aria-hidden="true"></i> New Bank</button>';
+    $button = '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createBankId"><i class="text-white fa fa-plus" aria-hidden="true"></i> New Bank</button>';
 @endphp
 
 <style>
@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
-                <label for="account_id">Account Id (For Mobile bank: Please provide mobile number)</label>
+                <label for="account_id">Account Id</label>
                 <input type="text" class="form-control" name="account_id" id="account_id" placeholder="Account Number" required>
             </div>
         </div>
@@ -41,6 +41,6 @@
             </div>
         </div>
     </div>
-    @include('modules.checkbox', ['status' => 1])
+    @include('modules.checkbox', ['checked' => 1, 'title' => 'Status', 'name' => 'status'])
     <button type="submit" class="btn btn-primary btn-block" role="button"> Save</button>
 </form>
